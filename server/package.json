@@ -1,0 +1,31 @@
+{
+  "name": "asset_management",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "dev": "babel-node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muyu66/asset_management.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/muyu66/asset_management/issues"
+  },
+  "homepage": "https://github.com/muyu66/asset_management#readme",
+  "dependencies": {
+    "koa": "^1.2.4",
+    "node-schedule": "^1.2.0",
+    "request": "^2.79.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-stage-2": "^6.22.0",
+    "mocha": "^3.2.0"
+  }
+}
