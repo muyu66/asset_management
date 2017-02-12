@@ -14,6 +14,9 @@ App.use(function *() {
 // 详细
 // http://fund.eastmoney.com/pingzhongdata/420003.js?v=20170211140710
 
+// 历史
+// http://webstock.quote.hermes.hexun.com/a/kline?code=sse000001&start=20170210150000&number=-1000&type=5&callback=callback
+
 let rule = new Schedule.RecurrenceRule();
 rule.second = 4;
 
@@ -23,7 +26,7 @@ Schedule.scheduleJob('* * * * *', function () {
 });
 
 function getData() {
-    let url = 'http://nufm3.dfcfw.com/EM_Finance2014NumericApplication/JS.aspx?type=CT&cmd=0000011,3990012&sty=E1OQ&st=z&sr=&p=&ps=&cb=&js=getDapan({quotation:[%28x%29]})&token=8a36403b92724d5d1dd36dc40534aec5&1456378242846';
+    let url = 'http://webstock.quote.hermes.hexun.com/a/kline?code=sse000001&start=20170210150000&number=-1000&type=5&callback=callback';
     Request(url, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             eval(body);
@@ -31,10 +34,11 @@ function getData() {
     })
 }
 
-function getDapan(datas) {
-    datas.quotation.forEach(function (data) {
-        let array = data.split(",");
-        console.log(array[1], array[2]);
+function callback(datas) {
+    datas.Data[0].forEach(function (data) {
+        // let array = data.split(",");
+        console.log(data[0] / 1000000, data[1] / 100);
+        console.log('########');
     })
 }
 
