@@ -1,6 +1,7 @@
 import Koa from 'koa';
 import Request from 'request';
 import Schedule from 'node-schedule';
+import NodeMailer from 'nodemailer';
 
 const App = Koa();
 
@@ -39,7 +40,33 @@ function callback(datas) {
         // let array = data.split(",");
         console.log(data[0] / 1000000, data[1] / 100);
         console.log('########');
+        sendEmail();
     })
+}
+
+function sendEmail() {
+    let transporter = NodeMailer.createTransport({
+        service: '163',
+        auth: {
+            user: "zhouyu_66@163.com", // 账号
+            pass: "chinach1C" // 密码
+        }
+    });
+
+    let mailOptions = {
+        from: '"Muyu" <zhouyu_66@163.com>',
+        to: '460605861@qq.com',
+        subject: 'Hello ✔',
+        text: 'Hello world ?',
+        html: '<b>huhuhuhu</b>'
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.log(error);
+        }
+        console.log('Message %s sent: %s', info.messageId, info.response);
+    });
 }
 
 App.listen(8081);
